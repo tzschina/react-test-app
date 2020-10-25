@@ -1,5 +1,6 @@
 # Expensify App
 
 
-Start project:
-`yarn build:dev`
+Local development:
+For live watching dev: `yarn build:dev`
+For live watching test: `yarn test -- --watch`
