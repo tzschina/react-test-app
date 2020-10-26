@@ -1,17 +1,28 @@
 import { v4 as uuid } from 'uuid';
+import database from '../firebase/firebase';
 
-export const addExpense = ({ desc = "", note = "", amount = 0, createdAt = 0 } = {}) => (
+export const addExpense = ( expense = {}) => (
     {
         type: "ADD_EXPENSE",
-        expense: {
-            id: uuid(),
-            desc,
-            amount,
-            createdAt,
-            note
-        }
+        expense
     }
 );
+
+export const startAddExpense = ( expense = {}) => {
+    return (dispatch) => {
+        const { desc = "", note = "", amount = 0, createdAt = 0 } = expense;
+        const expenseFireBaseData = {
+            desc, note, amount, createdAt
+        };
+        //This returns a promise chain so that later we could do more .then() call
+        return database.ref("expenses").push(expense).then((ref) => {
+            dispatch(addExpense({
+                id: ref.key,
+                ...expense
+            }))
+        });
+    };
+};
 
 export const removeExpense = ({ id }) => (
     {
