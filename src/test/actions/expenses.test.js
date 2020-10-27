@@ -144,7 +144,6 @@ test('should update the expense to database and store', (done)=> {
         });
         
         database.ref('expenses/' + actions[0].id).once('value').then((snapshot) => {
-            console.log("snapshot>>>" + JSON.stringify(snapshot.val()));
             expect(snapshot.val()).toEqual(updates);
             done();
         });
