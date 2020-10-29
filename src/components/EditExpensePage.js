@@ -1,7 +1,7 @@
 import React from 'react';
 import ExpenseForm from './ExpenseForm';
-import {connect} from 'react-redux';
-import {startRemoveExpense, startEditExpense} from '../actions/expenses';
+import { connect } from 'react-redux';
+import { startRemoveExpense, startEditExpense } from '../actions/expenses';
 
 export class EditExpensePage extends React.Component {
     constructor(props) {
@@ -11,7 +11,7 @@ export class EditExpensePage extends React.Component {
     }
 
     handleEdit(expense) {
-        this.props.startEditExpense({ id: this.props.expense.id, updates: expense});
+        this.props.startEditExpense({ id: this.props.expense.id, updates: expense });
         this.props.history.push('/');
     }
 
@@ -23,8 +23,15 @@ export class EditExpensePage extends React.Component {
     render() {
         return (
             <div>
-            <ExpenseForm expense={this.props.expense} handleExpense={this.handleEdit}/>
-            <button onClick={this.handleRemove}>Remove</button>
+                <div className="page-header">
+                    <div className="content-container">
+                        <h1 className="page-header__title">Expense update</h1>
+                    </div>
+                </div>
+                <div className="content-container">
+                <ExpenseForm expense={this.props.expense} handleExpense={this.handleEdit} />
+                <button className="button button--secondary" onClick={this.handleRemove}>Remove</button>
+                </div>
             </div>
         )
     };
@@ -32,7 +39,7 @@ export class EditExpensePage extends React.Component {
 
 
 const mapStateToProps = (state, props) => ({
-    expense: state.expenses.find((expense) => expense.id === props.match.params.id )
+    expense: state.expenses.find((expense) => expense.id === props.match.params.id)
 });
 
 const mapDispatchToProps = (dispatch) => ({

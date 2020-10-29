@@ -9,7 +9,7 @@ class ExpenseForm extends React.Component {
 
         this.state = {
             desc: props.expense ? props.expense.desc : '',
-            amount: props.expense ? props.expense.amount :  '',
+            amount: props.expense ? props.expense.amount : '',
             note: props.expense ? props.expense.note : '',
             createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
             createdAtCalendarFocus: false,
@@ -42,7 +42,7 @@ class ExpenseForm extends React.Component {
 
     handleDateChange(createdAt) {
         if (createdAt) {
-            this.setState(() => ( { createdAt } ));
+            this.setState(() => ({ createdAt }));
         }
     }
 
@@ -52,10 +52,10 @@ class ExpenseForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        if(!this.state.desc || !this.state.amount) {
-            this.setState(() => ({error: 'Description and amount must be entered'}));
+        if (!this.state.desc || !this.state.amount) {
+            this.setState(() => ({ error: 'Description and amount must be entered' }));
         } else {
-            this.setState(() => ({error: undefined}));
+            this.setState(() => ({ error: undefined }));
             this.props.handleExpense(
                 {
                     amount: parseFloat(this.state.amount),
@@ -69,22 +69,22 @@ class ExpenseForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    { this.state.error && <div>{this.state.error}</div>}
-                    <input type="text" placeholder="Description" autoFocus value={this.state.desc} onChange={this.handleDescriptionChange} />
-                    <input type="text" placeholder="Amount" value={this.state.amount} onChange={this.handleAmountChange} />
-                    <textarea placeholder="Add note" value={this.state.note} onChange={this.handleNoteChange} />
-                    <SingleDatePicker
-                        isOutsideRange={() => false}
-                        numberOfMonths={1}
-                        date={this.state.createdAt}
-                        onDateChange={this.handleDateChange}
-                        focused={this.state.createdAtCalendarFocus}
-                        onFocusChange={this.handleCalendarFocusChange} />
-                    <button>{this.props.expense ? 'Update': 'Add'} Expense</button>
-                </form>
-            </div>
+            <form className="form" onSubmit={this.handleSubmit}>
+                { this.state.error && <div className="form__error">{this.state.error}</div>}
+                <input className="text-input" type="text" placeholder="Description" autoFocus value={this.state.desc} onChange={this.handleDescriptionChange} />
+                <input className="text-input" type="text" placeholder="Amount" value={this.state.amount} onChange={this.handleAmountChange} />
+                <textarea className="textarea-input" placeholder="Add note" value={this.state.note} onChange={this.handleNoteChange} />
+                <SingleDatePicker
+                    isOutsideRange={() => false}
+                    numberOfMonths={1}
+                    date={this.state.createdAt}
+                    onDateChange={this.handleDateChange}
+                    focused={this.state.createdAtCalendarFocus}
+                    onFocusChange={this.handleCalendarFocusChange} />
+                <div>
+                    <button className="button">{this.props.expense ? 'Update' : 'Add'} Expense</button>
+                </div>
+            </form>
         );
     };
 };

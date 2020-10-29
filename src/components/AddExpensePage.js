@@ -1,6 +1,6 @@
 import React from 'react';
 import ExpenseForm from './ExpenseForm';
-import {startAddExpense} from '../actions/expenses';
+import { startAddExpense } from '../actions/expenses';
 import { connect } from 'react-redux';
 
 
@@ -18,10 +18,14 @@ export class AddExpensePage extends React.Component {
 
     render() {
         return (
-            <div>AddExpensePage
-            <h1>Add Expense</h1>
-            <ExpenseForm handleExpense={this.handleSubmit}/>
-        </div>
+            <div>
+                <div className="page-header">
+                    <div className="content-container"><h1>Add Expense</h1></div>
+                </div>
+                <div className="content-container">
+                    <ExpenseForm handleExpense={this.handleSubmit} />
+                </div>
+            </div>
         );
     }
 

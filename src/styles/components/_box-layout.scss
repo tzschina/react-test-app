@@ -1,0 +1,23 @@
+.box_layout {
+    background: #191970;
+    height: 100vh;
+    width: 100vw;
+    background-size:dover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.box_layout__box {
+    background: fade-out(white, .15);
+    border-radius: 3px;
+    text-align:center;
+    width: 25rem;
+    padding: $l-size $m-size;
+}
+
+.box_layout__title {
+    margin:  0 0 $m-size 0;
+    line-height: 1;
+}
